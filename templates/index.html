@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>We Are The World</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index-styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <form action="/" method="post" onsubmit="return validateForm()" id="user_form">
+            <input type="hidden" id="validationToken" name="validationToken">
+            <input type="text" name="thought" placeholder="Enter your thought here..." required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
     <script>
         // Function to set a validation token
         function setValidationToken() {
@@ -24,14 +33,5 @@
 
         window.onload = setValidationToken;
     </script>
-</head>
-<body>
-    <div class="container">
-        <form action="/" method="post" onsubmit="return validateForm()">
-            <input type="hidden" id="validationToken" name="validationToken">
-            <input type="text" name="thought" placeholder="Enter your thought here..." required>
-            <button type="submit">Submit</button>
-        </form>
-    </div>
 </body>
 </html>

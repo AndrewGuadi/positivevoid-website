@@ -10,14 +10,17 @@ body {
     height: 100vh;
     background: linear-gradient(45deg, #141e30, #243b55);
     color: #ffffff;
+    overflow: hidden; /* Prevents the page from scrolling */
 }
 
 .container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 50%;
-    height: 50px;
+    width: 90%;
+    max-width: 500px; /* Max width for larger screens */
+    padding: 20px;
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -25,28 +28,58 @@ body {
 }
 
 input[type="text"], button {
-    height: 100%;
+    width: 100%;
+    height: 40px;
+    margin: 10px 0;
     border: none;
     outline: none;
     padding: 0 10px;
+    font-size: 1em;
+    border-radius: 5px;
 }
 
 input[type="text"] {
-    flex-grow: 1;
-    background: transparent;
+    background: rgba(255, 255, 255, 0.2);
     color: #ffffff;
-    font-size: 1.2em;
     text-align: center;
 }
 
+input[type="text"]::placeholder {
+    color: #ffffff;
+    opacity: 0.8;
+}
+
 button {
-    padding: 0 20px;
     background: #ff8a00;
     color: #fff;
     cursor: pointer;
     transition: background 0.3s;
+    text-transform: uppercase;
+    font-weight: bold;
+    width:100%;
 }
 
 button:hover {
     background: #e52e71;
 }
+
+
+
+@media screen and (min-width:768px) {
+
+    .container, #user_form{
+        max-width: 95vw;
+    }
+    
+    .container form{
+        display:flex;
+    }
+
+    .container input{
+        width:65vw;
+    }
+
+    .container button{
+        width:10%;
+    }
+}   
