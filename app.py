@@ -8,11 +8,12 @@ def index():
         thought = request.form['thought']
         # Here you would add your logic to filter and save the thought
         return redirect(url_for('thank_you'))
-    return render_template('index.html')
+    return render_template('index.html')  # Render the main page
 
 @app.route('/thank_you')
 def thank_you():
-    return 'Thank you for sharing your thoughts!'
+    # Render the thank you page after a thought is submitted
+    return render_template('thankyou.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
