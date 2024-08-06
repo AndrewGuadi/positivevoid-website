@@ -38,3 +38,17 @@ h1, p {
 .btn:hover {
     background: #e52e71;
 }
+
+.challenging-thought {
+    margin-top: 20px;
+}
+
+.challenging-thought h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.challenging-thought p {
+    font-size: 1.2em;
+    color: #ffeb3b;
+}

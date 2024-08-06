@@ -10,6 +10,12 @@
     <div class="container">
         <h1>Thank You!</h1>
         <p>Thank you for sharing your thoughts with the world. Your insight is valuable to us!</p>
+        {% if challenging_thought %}
+        <div class="challenging-thought">
+            <h2>Insight</h2>
+            <p>{{ challenging_thought }}</p>
+        </div>
+        {% endif %}
         <a href="/" class="btn">Share Another Thought</a>
     </div>
 </body>

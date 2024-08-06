@@ -11,7 +11,7 @@ def filter_user_input(text):
 
     # Ask the GPT model to filter the data and tag it with necessary data.
     prompt = "You will assess the tone, meaning, and nuances of the following text and return data in the required JSON format. You will fail foul-intentioned inputs"
-    example = "{'status': pass_or_fail, 'status_reason':'only_if_failed_reason_why_failed', 'text': *input_text_goes_here*, 'emotions': [array of emotions perceived in text], 'sentiment_basic': positive_neutral_negative, 'sentiment_score': on_scale_from_-100_to_+100, 'TLDR': point_of_message, 'keywords': [array of 3-10 keywords here]}"
+    example = "{'status': pass_or_fail, 'status_reason':'only_if_failed_reason_why_failed', 'text': *input_text_goes_here*, 'emotions': [array of emotions perceived in text], 'sentiment_basic': positive_neutral_negative, 'sentiment_score': on_scale_from_-100_to_+100, 'TLDR': point_of_message, 'keywords': [array of 3-10 keywords here], 'challenging_thought':'this_should_be_a_positive_stoic_spin_on_the_input_encouraging_the_user'}"
 
     response = bot.gpt_json(prompt, text, example)
 
