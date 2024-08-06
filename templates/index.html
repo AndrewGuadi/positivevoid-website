@@ -5,10 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>We Are The World</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index-styles.css') }}">
+    <script>
+        // Function to set a validation token
+        function setValidationToken() {
+            document.getElementById('validationToken').value = 'valid';
+        }
+
+        // Function to check before submitting the form
+        function validateForm() {
+            var token = document.getElementById('validationToken').value;
+            if (token === 'valid') {
+                return true;
+            } else {
+                alert('Please enable JavaScript to submit this form.');
+                return false;
+            }
+        }
+
+        window.onload = setValidationToken;
+    </script>
 </head>
 <body>
     <div class="container">
-        <form action="/" method="post">
+        <form action="/" method="post" onsubmit="return validateForm()">
+            <input type="hidden" id="validationToken" name="validationToken">
             <input type="text" name="thought" placeholder="Enter your thought here..." required>
             <button type="submit">Submit</button>
         </form>
