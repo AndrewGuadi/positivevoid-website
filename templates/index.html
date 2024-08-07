@@ -8,12 +8,18 @@
 </head>
 <body>
     <div class="container">
-        <form action="/" method="post" onsubmit="return validateForm()" id="user_form">
+        <form action="/" method="post" onsubmit="return validateForm()">
             <input type="hidden" id="validationToken" name="validationToken">
             <input type="text" name="thought" placeholder="Enter your thought here..." autocomplete="off" required>
             <button type="submit">Submit</button>
         </form>
-        <a href="{{ url_for('privacy') }}" class="privacy-link" target="_blank">Privacy Policy</a>
+        <a href="{{ url_for('privacy') }}" class="privacy-link">Privacy Policy</a>
+    </div>
+    <div id="warning-popup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <p>You have previously been warned. This is your last warning before you will be banned from using the app.</p>
+        </div>
     </div>
     <script>
         // Function to set a validation token
@@ -31,6 +37,16 @@
                 return false;
             }
         }
+
+        // Function to close the popup
+        function closePopup() {
+            document.getElementById('warning-popup').style.display = 'none';
+        }
+
+        // Check if the session flag is set to display the warning popup
+        {% if session.get('warning') %}
+            document.getElementById('warning-popup').style.display = 'block';
+        {% endif %}
 
         window.onload = setValidationToken;
     </script>

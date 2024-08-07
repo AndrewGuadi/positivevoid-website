@@ -3,6 +3,7 @@ from extensions import db, init_app
 from models import Thought, ProcessedThought, FailedThought, BadIP
 from gpt_connect import filter_user_input  # Import the filter function
 import json
+from datetime import datetime
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///thoughts.db'
@@ -26,10 +27,17 @@ def privacy():
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+
+    user_ip = get_user_ip()  # Get the user's IP address
+    invalidate_ip = BadIP.query.filter_by(ip=user_ip).first()
+    if invalidate_ip:
+        # Set a session flag to display the warning popup
+        session['warning'] = True
+    else:
+        session.pop('warning', None)  # Remove the warning flag if not invalidated
+
+
     if request.method == 'POST':
-        user_ip = get_user_ip()  # Get the user's IP address
-        #in the future here we want to process the IP and remove access for repeat offenders
-        print(user_ip)
         raw_thought = request.form['thought']
         filtered_response = filter_user_input(raw_thought)  # Use the imported function
 

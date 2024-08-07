@@ -1,5 +1,6 @@
 from extensions import db
 import json
+from datetime import datetime
 
 class Thought(db.Model):
     id = db.Column(db.Integer, primary_key=True)
