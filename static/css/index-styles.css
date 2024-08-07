@@ -21,6 +21,13 @@ body {
     top:0;
     width: 100%;
     margin-bottom: 6vw;
+    background: linear-gradient(to bottom, #273a5f, #335377);
+    border-bottom: 2px solid black;
+}
+
+
+.navbar-brand, .nav-link{
+    color:white!important;
 }
 
 .container {
