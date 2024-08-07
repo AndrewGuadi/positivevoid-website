@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from extensions import db, init_app
-from models import Thought, ProcessedThought, FailedThought
+from models import Thought, ProcessedThought, FailedThought, BadIP
 from gpt_connect import filter_user_input  # Import the filter function
 import json
 
@@ -11,9 +11,25 @@ app.secret_key = 'supersecretkey'  # Needed for session management
 
 init_app(app)
 
+
+def get_user_ip():
+    if request.environ.get('HTTP_X_FORWARDED_FOR') is None:
+        return request.environ['REMOTE_ADDR']
+    else:
+        return request.environ['HTTP_X_FORWARDED_FOR']
+
+
+@app.route('/privacy')
+def privacy():
+    return render_template('privacy.html')
+
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
+        user_ip = get_user_ip()  # Get the user's IP address
+        #in the future here we want to process the IP and remove access for repeat offenders
+        print(user_ip)
         raw_thought = request.form['thought']
         filtered_response = filter_user_input(raw_thought)  # Use the imported function
 
@@ -46,7 +62,20 @@ def index():
             )
             db.session.add(new_failed_thought)
 
-        db.session.commit()
+            # Log the bad IP address if it doesn't already exist
+            bad_ip = BadIP.query.filter_by(ip=user_ip).first()
+            if not bad_ip:
+                bad_ip = BadIP(ip=user_ip)
+                db.session.add(bad_ip)
+            else:
+                bad_ip.time_stamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+        try:
+            db.session.commit()
+
+        except Exception as e:
+            print(f"There was an issue uploading data to DB. {e}")
+            db.session.rollback()
 
         # Pass challenging thought to the thank_you route
         session['challenging_thought'] = challenging_thought

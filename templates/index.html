@@ -10,9 +10,10 @@
     <div class="container">
         <form action="/" method="post" onsubmit="return validateForm()" id="user_form">
             <input type="hidden" id="validationToken" name="validationToken">
-            <input type="text" name="thought" placeholder="Enter your thought here..." required>
+            <input type="text" name="thought" placeholder="Enter your thought here..." autocomplete="off" required>
             <button type="submit">Submit</button>
         </form>
+        <a href="{{ url_for('privacy') }}" class="privacy-link" target="_blank">Privacy Policy</a>
     </div>
     <script>
         // Function to set a validation token

@@ -49,3 +49,15 @@ class FailedThought(db.Model):
         self.tldr = tldr
         self.time_stamp = time_stamp
         self.keywords = json.dumps(keywords)  # Convert list to JSON string
+
+
+
+
+class BadIP(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    ip = db.Column(db.String(50), nullable=False, unique=True)
+    time_stamp = db.Column(db.String(50), nullable=False)
+
+    def __init__(self, ip):
+        self.ip = ip
+        self.time_stamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')

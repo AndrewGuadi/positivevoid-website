@@ -63,6 +63,17 @@ button:hover {
     background: #e52e71;
 }
 
+.privacy-link {
+    margin-top: 20px;
+    color: #ff8a00;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+.privacy-link:hover {
+    text-decoration: underline;
+}
+
 
 
 @media screen and (min-width:768px) {
