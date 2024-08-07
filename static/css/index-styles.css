@@ -11,23 +11,33 @@ body {
     height: 100vh;
     background: linear-gradient(45deg, #141e30, #243b55);
     color: #ffffff;
-    overflow-y:scroll;
+    overflow-y: scroll;
     overflow-x: hidden; /* Prevents the page from scrolling */
-    padding-bottom:5vw;
+    padding-bottom: 5vw;
 }
 
 .navbar {
-    position:absolute;
-    top:0;
+    position: fixed;
+    top: 0;
     width: 100%;
-    margin-bottom: 6vw;
     background: linear-gradient(to bottom, #273a5f, #335377);
     border-bottom: 2px solid black;
+    z-index: 1000;
 }
 
+.navbar-brand, .nav-link {
+    color: white !important;
+}
 
-.navbar-brand, .nav-link{
-    color:white!important;
+.navbar-toggler {
+    width:25vw;
+    border-color: transparent;
+    padding: 0.25rem 0.75rem;
+}
+
+.navbar-toggler-icon {
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 .container {
@@ -46,7 +56,7 @@ body {
 }
 
 .purpose {
-    margin-top:35vw;
+    margin-top: 20vw;
     text-align: center;
     margin-bottom: 20px;
 }
@@ -57,7 +67,7 @@ body {
 }
 
 .purpose p {
-    padding:5vw;
+    padding: 5vw;
     font-size: 1rem;
     line-height: 1.4;
 }
@@ -147,31 +157,29 @@ button:hover {
     cursor: pointer;
 }
 
-@media screen and (min-width:768px) {
-
-    
-    .purpose{
-        margin-top:2vw;
+@media screen and (min-width: 768px) {
+    .purpose {
+        margin-top: 2vw;
     }
 
-    .container{
-        margin-top:2vw;
+    .container {
+        margin-top: 2vw;
     }
-    .container, #user_form{
+
+    .container, #user_form {
         max-width: 95vw;
     }
     
-    .container form{
-        display:flex;
+    .container form {
+        display: flex;
     }
 
-    .container input{
-        width:65vw;
-        margin-right:3vw;
+    .container input {
+        width: 65vw;
+        margin-right: 3vw;
     }
 
-    .container button{
-        width:10%;
+    .container button {
+        width: 10%;
     }
-    
 }
