@@ -9,7 +9,9 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(45deg, #141e30, #243b55);
+    background:url('../images/pv-background.jpg');
+    background-position: center;
+    background-size: cover;
     color: #ffffff;
     overflow-y: scroll;
     overflow-x: hidden; /* Prevents the page from scrolling */
@@ -20,19 +22,24 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    background: linear-gradient(to bottom, #273a5f, #335377);
+    background: linear-gradient(45deg, #000000, #335377);
     border-bottom: 2px solid black;
     z-index: 1000;
 }
 
+.navbar-brand{
+    font-weight:700;
+    font-size:7vw;
+}
 .navbar-brand, .nav-link {
     color: white !important;
 }
 
 .navbar-toggler {
-    width:25vw;
-    border-color: transparent;
+    width:17vw;
     padding: 0.25rem 0.75rem;
+    background-color:#335377;
+    border:2px solid white!important;
 }
 
 .navbar-toggler-icon {
@@ -67,7 +74,7 @@ body {
 }
 
 .purpose p {
-    padding: 5vw;
+    padding: 0vw 5vw;
     font-size: 1rem;
     line-height: 1.4;
 }
@@ -158,6 +165,10 @@ button:hover {
 }
 
 @media screen and (min-width: 768px) {
+
+    .navbar-brand{
+        font-size:3vw;
+    }
     .purpose {
         margin-top: 2vw;
     }
